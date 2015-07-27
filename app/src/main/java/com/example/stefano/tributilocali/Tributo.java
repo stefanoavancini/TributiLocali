@@ -35,7 +35,7 @@ public class Tributo extends Activity{
         listitem = (ListView) findViewById(R.id.lv_tributo);
         XMLParser parser = new XMLParser();
         Document doc = parser.getDomElement(XML); // getting DOM element
-        //test
+        //test jj
         NodeList nl = doc.getElementsByTagName("comune");
         tipo_tributo_list = new ArrayList<HashMap<String, String>>();
         for (int i = 0; i < nl.getLength(); i++) {
