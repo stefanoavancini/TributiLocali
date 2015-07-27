@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/benvenuto"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USERNAME"
+        android:id="@+id/testo_username"
+        android:layout_below="@+id/benvenuto"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/username"
+        android:ems="10"
+        android:inputType="textCapCharacters"
+        android:layout_below="@+id/testo_username"
+        android:maxLength="16"
+        android:digits="0,1,2,3,4,5,6,7,8,9,QWERTYUIOPLKJHGFDSAZXCVBNM"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PASSWORD"
+        android:id="@+id/testo_pass"
+        android:layout_below="@+id/username"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/password"
+        android:layout_below="@+id/testo_pass"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ACCEDI"
+        android:id="@+id/accedi"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/password"
+        android:textSize="15pt"
+        android:width="150pt"
+        android:height="35pt"
+        />
+
+
+
+
+
+</RelativeLayout>

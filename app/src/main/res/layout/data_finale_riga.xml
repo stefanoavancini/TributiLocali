@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VIA"
+        android:textColor="#27ae60"
+        android:id="@+id/via"
+        android:layout_centerHorizontal="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CC __ PED __ SUB ___"
+        android:textColor="#27ae60"
+        android:id="@+id/dati_catastali"
+        android:layout_centerHorizontal="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CATEGORIA"
+        android:textColor="#27ae60"
+        android:id="@+id/categoria"
+        android:layout_centerHorizontal="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="QUOTA"
+        android:textColor="#27ae60"
+        android:id="@+id/quota"
+        android:layout_centerHorizontal="false" />
+</LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:layout_gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SI/NO"
+            android:textColor="#27ae60"
+            android:id="@+id/abit_princ"
+            android:layout_centerHorizontal="false" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="€ "
+        android:id="@+id/importo"
+        android:textColor="#27ae60"
+        android:layout_centerHorizontal="false" />
+
+</LinearLayout>
+</LinearLayout>
