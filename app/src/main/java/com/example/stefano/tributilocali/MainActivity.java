@@ -1,7 +1,9 @@
 package com.example.stefano.tributilocali;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -67,6 +69,23 @@ public class MainActivity extends Activity {
 
     }
 
+    private void showSimplePopUp(String errore) {
+
+        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
+        helpBuilder.setTitle("Errore");
+        helpBuilder.setMessage(errore);
+        helpBuilder.setPositiveButton("Esci",
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing but close the dialog
+                    }
+                });
+
+        // Remember, create doesn't show the dialog
+        AlertDialog helpDialog = helpBuilder.create();
+        helpDialog.show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
