@@ -20,7 +20,7 @@ import java.util.HashMap;
  */
 public class Dati extends Activity{
     ListView listitem;
-    String comune,XML,tipo_tributo,anno;
+    String comune,XML,tipo_tributo,anno, contribuente;
     TextView anagrafica;
     static final String KEY_TRIBUTI = "dati"; // parent node
     static final String KEY_TIPO = "TIPO";
@@ -75,66 +75,83 @@ public class Dati extends Activity{
         Intent intent = getIntent();
         XML = intent.getStringExtra("XML");
         comune = intent.getStringExtra("comune");
+        contribuente = intent.getStringExtra("contribuente");
         tipo_tributo = intent.getStringExtra("tipo_tributo");
         anno = intent.getStringExtra("anno");
         listitem = (ListView) findViewById(R.id.lv_dati);
         XMLParser parser = new XMLParser();
         Document doc = parser.getDomElement(XML); // getting DOM element
-        NodeList nl = doc.getElementsByTagName("comune");
-
         dati_list = new ArrayList<HashMap<String, String>>();
-        for (int i = 0; i < nl.getLength(); i++) {
-            Element e = (Element) nl.item(i);
-            String app = parser.getAttribute(e,"val");
-            if(app.equals(comune))
-            {
-                NodeList fstNmElmntLst = e.getChildNodes();
-                int sz=fstNmElmntLst.getLength();
-                for(int nodes=0;nodes<sz;nodes++)
-                {
-                    Element ee = (Element) fstNmElmntLst.item(nodes);
-                    String appee = parser.getAttribute(ee,"val");
-                    if(appee.equals(tipo_tributo)) {
-                        NodeList anno_nodi = ee.getChildNodes();
-                        int n_anno_nodi = anno_nodi.getLength();
-                        for(int nodes_anno=0;nodes_anno<n_anno_nodi;nodes_anno++)
-                        {
-                            Element eee = (Element) anno_nodi.item(nodes_anno);
-                            String appeee = parser.getAttribute(eee,"val");
-                            if(appeee.equals(anno))
-                            {
-                                NodeList dati_nodi = eee.getChildNodes();
-                                int n_dati_nodi = dati_nodi.getLength();
-                                for(int nodes_dati=0;nodes_dati<n_dati_nodi;nodes_dati++)
-                                {
-                                Element eeee = (Element) dati_nodi.item(nodes_dati);
-                                HashMap<String, String> map = new HashMap<String, String>();
-                                String categoria = parser.getValue(eeee,KEY_CATEGORIA) + " Rendita " + parser.getValue(eeee,KEY_RENDITA);
-                                map.put(KEY_CATEGORIA, categoria);
-                                String dati_catastali = "C.C. " + parser.getValue(eeee, KEY_SEZIONE) + "P.Ed. " + parser.getValue(eeee,KEY_PED);
-                                if(!parser.getValue(eeee,KEY_PED_BARRATO).equals("0")){
-                                    dati_catastali += "/" + parser.getValue(eeee,KEY_PED_BARRATO);
-                                }
-                                    dati_catastali += "Sub. " + parser.getValue(eeee,KEY_SUBALTERNO);
-                                String via = parser.getValue(eeee,KEY_VIA).trim() + " " + parser.getValue(eeee,KEY_CIVICO) + " " + parser.getValue(eeee,KEY_BARRATO);
-                                map.put(KEY_VIA, via);
-                                map.put(KEY_SEZIONE, dati_catastali);
-                                String quota = parser.getValue(eeee,KEY_QUOTA) + " Mesi: " + parser.getValue(eeee,KEY_MESI);
-                                map.put(KEY_QUOTA, quota);
-                                map.put(KEY_ABIT_PRINC,"Abitazione principale: " + parser.getValue(eeee,KEY_ABIT_PRINC));
-                                 map.put(KEY_TOTALE,"€ " + parser.getValue(eeee,KEY_TOTALE));
-                                dati_list.add(map);
-                                }
-                            }
 
+        final NodeList contribuente_nodo_t = doc.getElementsByTagName("contribuente");
+        for (int contribuente_prog = 0; contribuente_prog < contribuente_nodo_t.getLength(); contribuente_prog++) {
+
+            Element contribuente_nodo = (Element) contribuente_nodo_t.item(contribuente_prog);
+            String contribuente_nodo_rgs = parser.getAttribute(contribuente_nodo,"ragione_sociale");
+
+            if(contribuente_nodo_rgs.equals(contribuente)) {
+
+                NodeList comune_nodo = contribuente_nodo.getChildNodes();
+                Element comune_val = (Element) comune_nodo.item(contribuente_prog);
+
+                for(int comune_prog=0;comune_prog<comune_nodo.getLength();comune_prog++){
+
+                    if (comune_val.equals(comune)) {
+
+                        NodeList tipo_tributo_nodo = comune_val.getChildNodes();
+                        Element tipo_tributo_val = (Element) tipo_tributo_nodo.item(comune_prog);
+
+                        for (int tipo_tributo_prog = 0; tipo_tributo_prog < tipo_tributo_nodo.getLength(); tipo_tributo_prog++) {
+
+                            String tipo_tributo_valore = parser.getAttribute(tipo_tributo_val, "val");
+
+                            if (tipo_tributo_valore.equals(tipo_tributo)) {
+                                NodeList anno_nodi = tipo_tributo_val.getChildNodes();
+
+                                for (int nodes_anno = 0; nodes_anno < anno_nodi.getLength(); nodes_anno++) {
+
+                                    Element anno_element = (Element) anno_nodi.item(nodes_anno);
+                                    String anno_value = parser.getAttribute(anno_element,"val");
+
+                                    if(anno_value.equals(anno))
+                                    {
+                                        NodeList dati_nodi = anno_element.getChildNodes();
+                                        int n_dati_nodi = dati_nodi.getLength();
+                                        for(int nodes_dati=0;nodes_dati<n_dati_nodi;nodes_dati++)
+                                        {
+                                            Element eeee = (Element) dati_nodi.item(nodes_dati);
+                                            HashMap<String, String> map = new HashMap<String, String>();
+                                            String categoria = parser.getValue(eeee,KEY_CATEGORIA) + " Rendita " + parser.getValue(eeee,KEY_RENDITA);
+                                            map.put(KEY_CATEGORIA, categoria);
+                                            String dati_catastali = "C.C. " + parser.getValue(eeee, KEY_SEZIONE) + "P.Ed. " + parser.getValue(eeee,KEY_PED);
+                                            if(!parser.getValue(eeee,KEY_PED_BARRATO).equals("0")){
+                                                dati_catastali += "/" + parser.getValue(eeee,KEY_PED_BARRATO);
+                                            }
+                                            dati_catastali += "Sub. " + parser.getValue(eeee,KEY_SUBALTERNO);
+                                            String via = parser.getValue(eeee,KEY_VIA).trim() + " " + parser.getValue(eeee,KEY_CIVICO) + " " + parser.getValue(eeee,KEY_BARRATO);
+                                            map.put(KEY_VIA, via);
+                                            map.put(KEY_SEZIONE, dati_catastali);
+                                            String quota = parser.getValue(eeee,KEY_QUOTA) + " Mesi: " + parser.getValue(eeee,KEY_MESI);
+                                            map.put(KEY_QUOTA, quota);
+                                            map.put(KEY_ABIT_PRINC,"Abitazione principale: " + parser.getValue(eeee,KEY_ABIT_PRINC));
+                                            map.put(KEY_TOTALE,"€ " + parser.getValue(eeee,KEY_TOTALE));
+                                            dati_list.add(map);
+                                        }
+                                    }
+
+                                }
+
+                            }
                         }
 
                     }
                 }
-
             }
 
         }
+
+
+
         ListAdapter adapter = new SimpleAdapter(
                 Dati.this, dati_list, R.layout.data_finale_riga, new String[]{KEY_VIA,KEY_SEZIONE,KEY_CATEGORIA,KEY_QUOTA,KEY_ABIT_PRINC,KEY_TOTALE}, new int[]{R.id.via,R.id.dati_catastali,R.id.categoria,R.id.quota,R.id.abit_princ,R.id.importo});
         // updating listview

@@ -38,11 +38,11 @@ public class Anno extends Activity {
         listitem = (ListView) findViewById(R.id.lv_anno);
         XMLParser parser = new XMLParser();
         Document doc = parser.getDomElement(XML); // getting DOM element
-        NodeList contribuente = doc.getElementsByTagName("contribuente");
+        final NodeList contribuente_nodo_t = doc.getElementsByTagName("contribuente");
         anno_list = new ArrayList<HashMap<String, String>>();
-        for (int contribuente_prog = 0; contribuente_prog < contribuente.getLength(); contribuente_prog++) {
+        for (int contribuente_prog = 0; contribuente_prog < contribuente_nodo_t.getLength(); contribuente_prog++) {
 
-            Element contribuente_nodo = (Element) contribuente.item(contribuente_prog);
+            Element contribuente_nodo = (Element) contribuente_nodo_t.item(contribuente_prog);
             String contribuente_nodo_rgs = parser.getAttribute(contribuente_nodo,"ragione_sociale");
 
             if(contribuente_nodo_rgs.equals(contribuente)) {
@@ -95,6 +95,7 @@ public class Anno extends Activity {
                 String anno = ((TextView) view.findViewById(R.id.Anno)).getText().toString();
 
                 i.putExtra("comune", comune);
+                i.putExtra("contribuente", contribuente);
                 i.putExtra("tipo_tributo", tipo_tributo);
                 i.putExtra("anno",anno);
                 i.putExtra("XML", XML);

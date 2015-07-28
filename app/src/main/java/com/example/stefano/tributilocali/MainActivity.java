@@ -179,7 +179,7 @@ public class MainActivity extends Activity {
                             benvenuto.setText("BENVENUTO " + ragione_sociale.trim() + "," + "," + auth);
                         }
                         XML = result.toString();
-                        Intent myIntent = new Intent(MainActivity.this, Comune.class);
+                        Intent myIntent = new Intent(MainActivity.this, Contribuente.class);
                         //myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         myIntent.putExtra("XML", XML); //Optional parameters
                         myIntent.putExtra("MTR", MATRICOLA); //Optional parameters

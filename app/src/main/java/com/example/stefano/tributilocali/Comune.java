@@ -22,7 +22,7 @@ import java.util.HashMap;
  */
 public class Comune extends Activity {
     ListView listitem;
-    static final String KEY_TRIBUTI = "comune"; // parent node
+    static final String KEY_TRIBUTI = "contribuente"; // parent node
     ArrayList<HashMap<String, String>> albumsList;
     public String XML,contribuente;
 
@@ -37,20 +37,20 @@ public class Comune extends Activity {
         listitem = (ListView) findViewById(R.id.lv_comune);
         XMLParser parser = new XMLParser();
         Document doc = parser.getDomElement(XML); // getting DOM element
-        NodeList nl = doc.getElementsByTagName(KEY_TRIBUTI);
+        NodeList contribuente_nodo = doc.getElementsByTagName(KEY_TRIBUTI);
         albumsList = new ArrayList<HashMap<String, String>>();
-        for (int i = 0; i < nl.getLength(); i++) {
-            Element e = (Element) nl.item(i);
-            String app = parser.getAttribute(e,"ragione_sociale");
-            if(app.equals(contribuente))
+        for (int contribuente_prg = 0; contribuente_prg < contribuente_nodo.getLength(); contribuente_prg++) {
+            Element contribuente_elemento = (Element) contribuente_nodo.item(contribuente_prg);
+            String contribuente_valore = parser.getAttribute(contribuente_elemento,"ragione_sociale").trim();
+            if(contribuente_valore.equals(contribuente))
             {
-                NodeList fstNmElmntLst = e.getChildNodes();
-                int sz=fstNmElmntLst.getLength();
-                for(int nodes=0;nodes<sz;nodes++)
+                NodeList comune_nodi = contribuente_elemento.getChildNodes();
+
+                for(int comune_prg=0;comune_prg<comune_nodi.getLength();comune_prg++)
                 {
-                    Element ee = (Element) fstNmElmntLst.item(nodes);
+                    Element comune_elemento = (Element) comune_nodi.item(comune_prg);
                     HashMap<String, String> map = new HashMap<String, String>();
-                    map.put(KEY_TRIBUTI, parser.getAttribute(ee, "val"));
+                    map.put(KEY_TRIBUTI, parser.getAttribute(comune_elemento, "val"));
                     albumsList.add(map);
                 }
             }
