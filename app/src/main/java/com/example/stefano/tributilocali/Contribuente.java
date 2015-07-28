@@ -20,8 +20,9 @@ import java.util.HashMap;
 /**
  * Created by Avancini.Stefano on 28/07/2015.
  */
-public class contribuente extends Activity {
+public class Contribuente extends Activity {
     ListView listitem;
+    Element e;
     static final String KEY_TRIBUTI = "contribuente"; // parent node
     static final String KEY_TIPO = "tipo";
     static final String KEY_RGS = "ragione_sociale";
@@ -44,8 +45,8 @@ public class contribuente extends Activity {
         albumsList = new ArrayList<HashMap<String, String>>();
         for (int i = 0; i < nl.getLength(); i++) {
             HashMap<String, String> map = new HashMap<String, String>();
-            Element e = (Element) nl.item(i);
-            map.put(KEY_TRIBUTI, parser.getAttribute(e,KEY_RGS)).trim();
+            e = (Element) nl.item(i);
+            map.put(KEY_TRIBUTI, parser.getAttribute(e,KEY_RGS).trim());
             String tipo = parser.getAttribute(e,KEY_TIPO);
             String altri_dati = "";
             if(tipo.equals("D")) {
@@ -62,7 +63,7 @@ public class contribuente extends Activity {
 
         }
         ListAdapter adapter = new SimpleAdapter(
-                contribuente.this, albumsList,R.layout.data_contribuente_riga, new String[] { KEY_TRIBUTI,"ALTRI_DATI"}, new int[] {R.id.Contribuente,R.id.Codice_fiscale});
+                Contribuente.this, albumsList,R.layout.data_contribuente_riga, new String[] { KEY_TRIBUTI,"ALTRI_DATI"}, new int[] {R.id.Contribuente,R.id.Codice_fiscale});
         // updating listview
         listitem.setAdapter(adapter);
         /**
@@ -74,12 +75,12 @@ public class contribuente extends Activity {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 // on selecting a single album
                 // TrackListActivity will be launched to show tracks inside the album
-                Intent i = new Intent(contribuente.this, Comune.class);
+                Intent i = new Intent(Contribuente.this, Comune.class);
                 // send album id to tracklist activity to get list of songs under that album
                 String contribuente = ((TextView) view.findViewById(R.id.Contribuente)).getText().toString();
                 String item = listitem.getItemAtPosition(position).toString();
                 i.putExtra("contribuente", contribuente);
-                i.putExtra("XML", XML);
+                i.putExtra("XML",XML);
                 startActivity(i);
             }
         });
