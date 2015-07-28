@@ -18,46 +18,51 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by stefano on 13/07/2015.
+ * Created by Avancini.Stefano on 28/07/2015.
  */
-public class Comune extends Activity {
+public class contribuente extends Activity {
     ListView listitem;
-    static final String KEY_TRIBUTI = "comune"; // parent node
+    static final String KEY_TRIBUTI = "contribuente"; // parent node
+    static final String KEY_TIPO = "tipo";
+    static final String KEY_RGS = "ragione_sociale";
+    static final String KEY_CF = "codice_fiscale";
+    static final String KEY_MTR = "matricola";
     ArrayList<HashMap<String, String>> albumsList;
-    public String XML,contribuente;
+    public String XML;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.data_comune);
+        setContentView(R.layout.data_contribuente);
         Intent intent = getIntent();
         XML = intent.getStringExtra("XML");
         String MTR = intent.getStringExtra("MTR");
-        contribuente = intent.getStringExtra("contribuente");
-        listitem = (ListView) findViewById(R.id.lv_comune);
+        listitem = (ListView) findViewById(R.id.lv_contribuente);
         XMLParser parser = new XMLParser();
         Document doc = parser.getDomElement(XML); // getting DOM element
         NodeList nl = doc.getElementsByTagName(KEY_TRIBUTI);
         albumsList = new ArrayList<HashMap<String, String>>();
         for (int i = 0; i < nl.getLength(); i++) {
+            HashMap<String, String> map = new HashMap<String, String>();
             Element e = (Element) nl.item(i);
-            String app = parser.getAttribute(e,"ragione_sociale");
-            if(app.equals(contribuente))
+            map.put(KEY_TRIBUTI, parser.getAttribute(e,KEY_RGS)).trim();
+            String tipo = parser.getAttribute(e,KEY_TIPO);
+            String altri_dati = "";
+            if(tipo.equals("D")) {
+                altri_dati = "DELEGATO: " + parser.getAttribute(e, KEY_CF).trim() + " - " + parser.getAttribute(e,KEY_MTR);
+            }
+            else
             {
-                NodeList fstNmElmntLst = e.getChildNodes();
-                int sz=fstNmElmntLst.getLength();
-                for(int nodes=0;nodes<sz;nodes++)
-                {
-                    Element ee = (Element) fstNmElmntLst.item(nodes);
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put(KEY_TRIBUTI, parser.getAttribute(ee, "val"));
-                    albumsList.add(map);
-                }
+                altri_dati = parser.getAttribute(e, KEY_CF).trim() + " - " + parser.getAttribute(e,KEY_MTR);
+            }
+            map.put("ALTRI_DATI", altri_dati);
+            if (!albumsList.contains(map)) {
+                albumsList.add(map);
             }
 
         }
         ListAdapter adapter = new SimpleAdapter(
-                Comune.this, albumsList,R.layout.data_comune_riga, new String[] { KEY_TRIBUTI}, new int[] {R.id.Comune});
+                contribuente.this, albumsList,R.layout.data_contribuente_riga, new String[] { KEY_TRIBUTI,"ALTRI_DATI"}, new int[] {R.id.Contribuente,R.id.Codice_fiscale});
         // updating listview
         listitem.setAdapter(adapter);
         /**
@@ -69,11 +74,10 @@ public class Comune extends Activity {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 // on selecting a single album
                 // TrackListActivity will be launched to show tracks inside the album
-                Intent i = new Intent(Comune.this, Tributo.class);
+                Intent i = new Intent(contribuente.this, Comune.class);
                 // send album id to tracklist activity to get list of songs under that album
-                String comune = ((TextView) view.findViewById(R.id.Comune)).getText().toString();
+                String contribuente = ((TextView) view.findViewById(R.id.Contribuente)).getText().toString();
                 String item = listitem.getItemAtPosition(position).toString();
-                i.putExtra("comune", comune);
                 i.putExtra("contribuente", contribuente);
                 i.putExtra("XML", XML);
                 startActivity(i);

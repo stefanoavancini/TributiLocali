@@ -22,9 +22,10 @@ import java.util.HashMap;
  */
 public class Anno extends Activity {
     ListView listitem;
-    String comune,XML,tipo_tributo;
+    String comune,XML,tipo_tributo,contribuente;
     static final String KEY_TRIBUTI = "anno"; // parent node
     ArrayList<HashMap<String, String>> anno_list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,38 +33,50 @@ public class Anno extends Activity {
         Intent intent = getIntent();
         XML = intent.getStringExtra("XML");
         comune = intent.getStringExtra("comune");
+        contribuente = intent.getStringExtra("contribuente");
         tipo_tributo = intent.getStringExtra("tipo_tributo");
         listitem = (ListView) findViewById(R.id.lv_anno);
         XMLParser parser = new XMLParser();
         Document doc = parser.getDomElement(XML); // getting DOM element
-        NodeList nl = doc.getElementsByTagName("comune");
+        NodeList contribuente = doc.getElementsByTagName("contribuente");
         anno_list = new ArrayList<HashMap<String, String>>();
-        for (int i = 0; i < nl.getLength(); i++) {
+        for (int contribuente_prog = 0; contribuente_prog < contribuente.getLength(); contribuente_prog++) {
 
-            Element e = (Element) nl.item(i);
-            String app = parser.getAttribute(e,"val");
-            if(app.equals(comune))
-            {
-                NodeList fstNmElmntLst = e.getChildNodes();
-                int sz=fstNmElmntLst.getLength();
-                for(int nodes=0;nodes<sz;nodes++)
-                {
-                    Element ee = (Element) fstNmElmntLst.item(nodes);
-                    String appee = parser.getAttribute(ee,"val");
-                    if(appee.equals(tipo_tributo)) {
-                        NodeList anno_nodi = ee.getChildNodes();
-                        int n_anno_nodi = anno_nodi.getLength();
-                        for(int nodes_anno=0;nodes_anno<n_anno_nodi;nodes_anno++)
-                        {
-                            Element eeee = (Element) anno_nodi.item(nodes_anno);
-                            HashMap<String, String> map = new HashMap<String, String>();
-                            map.put(KEY_TRIBUTI, parser.getAttribute(eeee, "val"));
-                            anno_list.add(map);
+            Element contribuente_nodo = (Element) contribuente.item(contribuente_prog);
+            String contribuente_nodo_rgs = parser.getAttribute(contribuente_nodo,"ragione_sociale");
+
+            if(contribuente_nodo_rgs.equals(contribuente)) {
+
+                NodeList comune_nodo = contribuente_nodo.getChildNodes();
+                Element comune_val = (Element) comune_nodo.item(contribuente_prog);
+
+                for(int comune_prog=0;comune_prog<comune_nodo.getLength();comune_prog++){
+
+                if (comune_val.equals(comune)) {
+
+                    NodeList tipo_tributo_nodo = comune_val.getChildNodes();
+                    Element tipo_tributo_val = (Element) tipo_tributo_nodo.item(comune_prog);
+
+                    for (int tipo_tributo_prog = 0; tipo_tributo_prog < tipo_tributo_nodo.getLength(); tipo_tributo_prog++) {
+
+                        String tipo_tributo_valore = parser.getAttribute(tipo_tributo_val, "val");
+
+                        if (tipo_tributo_valore.equals(tipo_tributo)) {
+                            NodeList anno_nodi = tipo_tributo_val.getChildNodes();
+
+                            for (int nodes_anno = 0; nodes_anno < anno_nodi.getLength(); nodes_anno++) {
+
+                                Element anno_element = (Element) anno_nodi.item(nodes_anno);
+                                HashMap<String, String> map = new HashMap<String, String>();
+                                map.put(KEY_TRIBUTI, parser.getAttribute(anno_element, "val"));
+                                anno_list.add(map);
+                            }
+
                         }
-
                     }
-                }
 
+                }
+                }
             }
 
         }
