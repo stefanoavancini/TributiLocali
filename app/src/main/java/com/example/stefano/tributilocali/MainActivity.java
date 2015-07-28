@@ -62,7 +62,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new MyAsyncTask().execute(username.getText().toString(), password.getText().toString(), "", "");
+                new MyAsyncTask().execute(username.getText().toString(), password.getText().toString(), "SI", "");
             }
         });
 
@@ -183,6 +183,8 @@ public class MainActivity extends Activity {
                         //myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         myIntent.putExtra("XML", XML); //Optional parameters
                         myIntent.putExtra("MTR", MATRICOLA); //Optional parameters
+                        myIntent.putExtra("username", username.getText().toString());
+                        myIntent.putExtra("password", password.getText().toString());
                         startActivity(myIntent);
                     } else {
                         benvenuto.setText("ERRORE DURANTE LA VERIFICA DEI DATI. SI PREGA DI RIPROVARE PIù TARDI");
@@ -213,14 +215,14 @@ public class MainActivity extends Activity {
             // In a POST request, we don't pass the values in the URL.
             //Therefore we use only the web page URL as the parameter of the HttpPost argument
             HttpPost httpPost = new HttpPost("http://www.gestelsrl.it/php/login.php");
-
+            progressDialog.setMessage("Verifica utente in corso...");
             // Because we are not passing values over the URL, we should have a mechanism to pass the values that can be
             //uniquely separate by the other end.
             //To achieve that we use BasicNameValuePair
             //Things we need to pass with the POST request
             BasicNameValuePair usernameBasicNameValuePair = new BasicNameValuePair("username", paramUsername);
             BasicNameValuePair dispositivoBasicNameValuePAir = new BasicNameValuePair("password", paramid_dispositivo);
-            BasicNameValuePair imageBasicNameValuePAir = new BasicNameValuePair("image", paramimage);
+            BasicNameValuePair imageBasicNameValuePAir = new BasicNameValuePair("delegati", paramimage);
             BasicNameValuePair languageBasicNameValuePAir = new BasicNameValuePair("language", paramlanguage);
             // We add the content that we want to pass with the POST request to as name-value pairs
             //Now we put those sending details to an ArrayList with type safe of NameValuePair

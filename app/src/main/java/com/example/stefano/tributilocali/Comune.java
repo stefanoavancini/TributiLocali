@@ -33,7 +33,7 @@ public class Comune extends Activity {
         Intent intent = getIntent();
         XML = intent.getStringExtra("XML");
         String MTR = intent.getStringExtra("MTR");
-        contribuente = intent.getStringExtra("contribuente");
+        contribuente = intent.getStringExtra("contribuente").trim();
         listitem = (ListView) findViewById(R.id.lv_comune);
         XMLParser parser = new XMLParser();
         Document doc = parser.getDomElement(XML); // getting DOM element
