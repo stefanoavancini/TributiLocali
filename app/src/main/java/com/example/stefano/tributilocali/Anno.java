@@ -43,22 +43,21 @@ public class Anno extends Activity {
         for (int contribuente_prog = 0; contribuente_prog < contribuente_nodo_t.getLength(); contribuente_prog++) {
 
             Element contribuente_nodo = (Element) contribuente_nodo_t.item(contribuente_prog);
-            String contribuente_nodo_rgs = parser.getAttribute(contribuente_nodo,"ragione_sociale");
+            String contribuente_nodo_rgs = parser.getAttribute(contribuente_nodo,"ragione_sociale").trim();
 
             if(contribuente_nodo_rgs.equals(contribuente)) {
 
                 NodeList comune_nodo = contribuente_nodo.getChildNodes();
-                Element comune_val = (Element) comune_nodo.item(contribuente_prog);
 
                 for(int comune_prog=0;comune_prog<comune_nodo.getLength();comune_prog++){
-
-                if (comune_val.equals(comune)) {
+                    Element comune_val = (Element) comune_nodo.item(comune_prog);
+                    String comune_valore = parser.getAttribute(comune_val, "val");
+                if (comune_valore.equals(comune)) {
 
                     NodeList tipo_tributo_nodo = comune_val.getChildNodes();
-                    Element tipo_tributo_val = (Element) tipo_tributo_nodo.item(comune_prog);
 
                     for (int tipo_tributo_prog = 0; tipo_tributo_prog < tipo_tributo_nodo.getLength(); tipo_tributo_prog++) {
-
+                        Element tipo_tributo_val = (Element) tipo_tributo_nodo.item(tipo_tributo_prog);
                         String tipo_tributo_valore = parser.getAttribute(tipo_tributo_val, "val");
 
                         if (tipo_tributo_valore.equals(tipo_tributo)) {

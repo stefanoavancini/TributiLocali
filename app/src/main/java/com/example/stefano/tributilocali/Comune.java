@@ -56,6 +56,7 @@ public class Comune extends Activity {
             }
 
         }
+
         ListAdapter adapter = new SimpleAdapter(
                 Comune.this, albumsList,R.layout.data_comune_riga, new String[] { KEY_TRIBUTI}, new int[] {R.id.Comune});
         // updating listview

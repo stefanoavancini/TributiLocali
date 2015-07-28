@@ -22,7 +22,7 @@ import java.util.HashMap;
  */
 public class Tributo extends Activity{
     ListView listitem;
-    String comune,XML;
+    String comune,XML,contribuente;
     static final String KEY_TRIBUTI = "tipo_tributo"; // parent node
     ArrayList<HashMap<String, String>> tipo_tributo_list;
     @Override
@@ -32,30 +32,45 @@ public class Tributo extends Activity{
         Intent intent = getIntent();
         XML = intent.getStringExtra("XML");
         comune = intent.getStringExtra("comune");
+        contribuente = intent.getStringExtra("contribuente");
         listitem = (ListView) findViewById(R.id.lv_tributo);
         XMLParser parser = new XMLParser();
         Document doc = parser.getDomElement(XML); // getting DOM element
-        NodeList nl = doc.getElementsByTagName("comune");
         tipo_tributo_list = new ArrayList<HashMap<String, String>>();
-        for (int i = 0; i < nl.getLength(); i++) {
 
-            Element e = (Element) nl.item(i);
-            String app = parser.getAttribute(e,"val");
-            if(app.equals(comune))
+        NodeList contribuente_nodo = doc.getElementsByTagName("contribuente");
+        for (int contribuente_prg = 0; contribuente_prg < contribuente_nodo.getLength(); contribuente_prg++) {
+
+            Element contribuente_elemento = (Element) contribuente_nodo.item(contribuente_prg);
+            String contribuente_valore = parser.getAttribute(contribuente_elemento,"ragione_sociale").trim();
+
+            if(contribuente_valore.equals(contribuente))
             {
-                NodeList fstNmElmntLst = e.getChildNodes();
-                int sz=fstNmElmntLst.getLength();
-                for(int nodes=0;nodes<sz;nodes++)
-                {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    Element ee = (Element) fstNmElmntLst.item(nodes);
-                    map.put(KEY_TRIBUTI, parser.getAttribute(ee, "val"));
-                    tipo_tributo_list.add(map);
-                }
 
+                NodeList comune_nodi = contribuente_elemento.getChildNodes();
+
+                for(int comune_prg=0;comune_prg<comune_nodi.getLength();comune_prg++)
+                {
+                    Element comune_elemento = (Element) comune_nodi.item(comune_prg);
+                    String comune_valore = parser.getAttribute(comune_elemento,"val").trim();
+
+                    if(comune_valore.equals(comune))
+                    {
+                        NodeList tipo_tributo_nodi = comune_elemento.getChildNodes();
+                        for(int tipo_tributo_prg=0;tipo_tributo_prg<tipo_tributo_nodi.getLength();tipo_tributo_prg++)
+                        {
+                            HashMap<String, String> map = new HashMap<String, String>();
+                            Element tipo_tributo_elemento = (Element) tipo_tributo_nodi.item(tipo_tributo_prg);
+                            map.put(KEY_TRIBUTI, parser.getAttribute(tipo_tributo_elemento, "val"));
+                            tipo_tributo_list.add(map);
+                        }
+                    }
+
+                }
             }
 
         }
+
         ListAdapter adapter = new SimpleAdapter(
                 Tributo.this, tipo_tributo_list, R.layout.data_tributo_riga, new String[]{KEY_TRIBUTI}, new int[]{R.id.Tributo});
         // updating listview
@@ -74,6 +89,7 @@ public class Tributo extends Activity{
                 String tipo_tributo = ((TextView) view.findViewById(R.id.Tributo)).getText().toString();
                 String item = listitem.getItemAtPosition(position).toString();
                 i.putExtra("comune", comune);
+                i.putExtra("contribuente", contribuente);
                 i.putExtra("tipo_tributo", tipo_tributo);
                 i.putExtra("XML", XML);
                 startActivity(i);
