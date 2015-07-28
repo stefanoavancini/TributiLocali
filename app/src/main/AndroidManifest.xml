@@ -35,6 +35,9 @@
         <activity android:name=".Tributo"
             android:label="Tributi" >
             </activity>
+        <activity android:name=".Contribuente"
+            android:label="Contribuente" >
+        </activity>
     </application>
 
 </manifest>

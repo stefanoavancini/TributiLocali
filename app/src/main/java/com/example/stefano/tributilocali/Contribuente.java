@@ -18,47 +18,52 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by stefano on 13/07/2015.
+ * Created by Avancini.Stefano on 28/07/2015.
  */
-public class Comune extends Activity {
+public class Contribuente extends Activity {
     ListView listitem;
+    Element e;
     static final String KEY_TRIBUTI = "contribuente"; // parent node
+    static final String KEY_TIPO = "tipo";
+    static final String KEY_RGS = "ragione_sociale";
+    static final String KEY_CF = "codice_fiscale";
+    static final String KEY_MTR = "matricola";
     ArrayList<HashMap<String, String>> albumsList;
-    public String XML,contribuente;
+    public String XML;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.data_comune);
+        setContentView(R.layout.data_contribuente);
         Intent intent = getIntent();
         XML = intent.getStringExtra("XML");
         String MTR = intent.getStringExtra("MTR");
-        contribuente = intent.getStringExtra("contribuente");
-        listitem = (ListView) findViewById(R.id.lv_comune);
+        listitem = (ListView) findViewById(R.id.lv_contribuente);
         XMLParser parser = new XMLParser();
         Document doc = parser.getDomElement(XML); // getting DOM element
-        NodeList contribuente_nodo = doc.getElementsByTagName(KEY_TRIBUTI);
+        NodeList nl = doc.getElementsByTagName(KEY_TRIBUTI);
         albumsList = new ArrayList<HashMap<String, String>>();
-        for (int contribuente_prg = 0; contribuente_prg < contribuente_nodo.getLength(); contribuente_prg++) {
-            Element contribuente_elemento = (Element) contribuente_nodo.item(contribuente_prg);
-            String contribuente_valore = parser.getAttribute(contribuente_elemento,"ragione_sociale").trim();
-            if(contribuente_valore.equals(contribuente))
+        for (int i = 0; i < nl.getLength(); i++) {
+            HashMap<String, String> map = new HashMap<String, String>();
+            e = (Element) nl.item(i);
+            map.put(KEY_TRIBUTI, parser.getAttribute(e,KEY_RGS).trim());
+            String tipo = parser.getAttribute(e,KEY_TIPO);
+            String altri_dati = "";
+            if(tipo.equals("D")) {
+                altri_dati = "DELEGATO: " + parser.getAttribute(e, KEY_CF).trim() + " - " + parser.getAttribute(e,KEY_MTR);
+            }
+            else
             {
-                NodeList comune_nodi = contribuente_elemento.getChildNodes();
-
-                for(int comune_prg=0;comune_prg<comune_nodi.getLength();comune_prg++)
-                {
-                    Element comune_elemento = (Element) comune_nodi.item(comune_prg);
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put(KEY_TRIBUTI, parser.getAttribute(comune_elemento, "val"));
-                    albumsList.add(map);
-                }
+                altri_dati = parser.getAttribute(e, KEY_CF).trim() + " - " + parser.getAttribute(e,KEY_MTR);
+            }
+            map.put("ALTRI_DATI", altri_dati);
+            if (!albumsList.contains(map)) {
+                albumsList.add(map);
             }
 
         }
-
         ListAdapter adapter = new SimpleAdapter(
-                Comune.this, albumsList,R.layout.data_comune_riga, new String[] { KEY_TRIBUTI}, new int[] {R.id.Comune});
+                Contribuente.this, albumsList,R.layout.data_contribuente_riga, new String[] { KEY_TRIBUTI,"ALTRI_DATI"}, new int[] {R.id.Contribuente,R.id.Codice_fiscale});
         // updating listview
         listitem.setAdapter(adapter);
         /**
@@ -70,13 +75,12 @@ public class Comune extends Activity {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 // on selecting a single album
                 // TrackListActivity will be launched to show tracks inside the album
-                Intent i = new Intent(Comune.this, Tributo.class);
+                Intent i = new Intent(Contribuente.this, Comune.class);
                 // send album id to tracklist activity to get list of songs under that album
-                String comune = ((TextView) view.findViewById(R.id.Comune)).getText().toString();
+                String contribuente = ((TextView) view.findViewById(R.id.Contribuente)).getText().toString();
                 String item = listitem.getItemAtPosition(position).toString();
-                i.putExtra("comune", comune);
                 i.putExtra("contribuente", contribuente);
-                i.putExtra("XML", XML);
+                i.putExtra("XML",XML);
                 startActivity(i);
             }
         });

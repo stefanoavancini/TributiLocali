@@ -1,7 +1,9 @@
 package com.example.stefano.tributilocali;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -67,6 +69,23 @@ public class MainActivity extends Activity {
 
     }
 
+    private void showSimplePopUp(String errore) {
+
+        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
+        helpBuilder.setTitle("Errore");
+        helpBuilder.setMessage(errore);
+        helpBuilder.setPositiveButton("Esci",
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing but close the dialog
+                    }
+                });
+
+        // Remember, create doesn't show the dialog
+        AlertDialog helpDialog = helpBuilder.create();
+        helpDialog.show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,76 +126,70 @@ public class MainActivity extends Activity {
             String line = "";
             Scanner scan = new Scanner(result.toString()); // I have named your StringBuilder object sb
             XMLParser parser = new XMLParser();
-            Document doc = parser.getDomElement(result.toString()); // getting DOM element
-            NodeList nl = doc.getElementsByTagName("utente");
-
-            for (int i = 0; i < nl.getLength(); i++) {
-                HashMap<String, String> map = new HashMap<String, String>();
-                Element e = (Element) nl.item(i);
-                ragione_sociale = parser.getValue(e,"ragione_sociale");
-                auth = parser.getValue(e,"autorizzazione");
-                MATRICOLA = Integer.parseInt(parser.getValue(e,"matricola"));
-                error = parser.getValue(e,"errore");
+            if ((result.toString().equals("Connection problem 1")) | (result.toString().equals("Connection problem 2")) | (result.toString().equals("Parameters error"))) {
+                //benvenuto.setText("VERIFICA LA CONNESSIONE");
+                showSimplePopUp("VERIFICA LA CONNESSIONE");
             }
-                if(error.equals("EP"))
-                {
-                    benvenuto.setText("PASSWORD ERRATA 1");
+            else {
+                Document doc = parser.getDomElement(result.toString()); // getting DOM element
+                NodeList nl = doc.getElementsByTagName("utente");
+
+                for (int i = 0; i < nl.getLength(); i++) {
+                    HashMap<String, String> map = new HashMap<String, String>();
+                    Element e = (Element) nl.item(i);
+                    ragione_sociale = parser.getValue(e, "ragione_sociale");
+                    auth = parser.getValue(e, "autorizzazione");
+                    MATRICOLA = Integer.parseInt(parser.getValue(e, "matricola"));
+                    error = parser.getValue(e, "errore");
+                }
+                if (error.equals("EP")) {
+                    showSimplePopUp("PASSWORD ERRATA");
+                    //benvenuto.setText("PASSWORD ERRATA 1");
                     //Intent intent = new Intent(getApplicationContext(), settings.class);
                     //startActivity(intent);
-                }
-                else if(error.equals("EPN"))
-                {
+                } else if (error.equals("EPN")) {
                     //String[] separated = line.split(";");
-                    benvenuto.setText("PASSWORD ERRATA 2");
+                    showSimplePopUp("PASSWORD ERRATA");
+                    //benvenuto.setText("PASSWORD ERRATA 2");
                     //USER = separated[0];
                     //PASSWORD = separated[1];
-                }
-                else if(error.equals("EC"))
-                {
+                } else if (error.equals("EC")) {
                     //String[] separated = line.split(";");
-                    benvenuto.setText("ERRORE CONNESSIONE");
+                    showSimplePopUp("ERRORE CONNESSIONE");
+                    //benvenuto.setText("ERRORE CONNESSIONE");
                     //USER = separated[0];
                     //PASSWORD = separated[1];
-                }
-                else if(error.equals("EU"))
-                {
+                } else if (error.equals("EU")) {
                     //String[] separated = line.split(";");
-                    benvenuto.setText("UTENTE NON ABILITATO 1");
+                    showSimplePopUp("UTENTE NON ABILITATO");
+                    //benvenuto.setText("UTENTE NON ABILITATO 1");
                     //USER = separated[0];
                     //PASSWORD = separated[1];
-                }
-                else if(error.equals("EUN"))
-                {
+                } else if (error.equals("EUN")) {
                     //String[] separated = line.split(";");
-                    benvenuto.setText("UTENTE NON ABILITATO 2");
+                    showSimplePopUp("UTENTE NON ABILITATO");
+                    //benvenuto.setText("UTENTE NON ABILITATO 2");
                     //USER = separated[0];
                     //PASSWORD = separated[1];
-                }
-                else
-                {
-                    if(error.equals("OK")) {
-                            if(!auth.equals(""))
-                            {
-                                benvenuto.setText("ADMIN " + ragione_sociale.trim() + "," + "," + auth);
-                            }
-                            else
-                            {
-                                benvenuto.setText("BENVENUTO " + ragione_sociale.trim() + "," + "," + auth);
-                            }
+                } else {
+                    if (error.equals("OK")) {
+                        if (!auth.equals("")) {
+                            benvenuto.setText("ADMIN " + ragione_sociale.trim() + "," + "," + auth);
+                        } else {
+                            benvenuto.setText("BENVENUTO " + ragione_sociale.trim() + "," + "," + auth);
+                        }
                         XML = result.toString();
-                        Intent myIntent = new Intent(MainActivity.this, Comune.class);
+                        Intent myIntent = new Intent(MainActivity.this, Contribuente.class);
                         //myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         myIntent.putExtra("XML", XML); //Optional parameters
                         myIntent.putExtra("MTR", MATRICOLA); //Optional parameters
                         startActivity(myIntent);
-                    }
-                    else
-                    {
+                    } else {
                         benvenuto.setText("ERRORE DURANTE LA VERIFICA DEI DATI. SI PREGA DI RIPROVARE PIù TARDI");
                     }//USER = separated[0];
                     //PASSWORD = separated[1];
                 }
-
+            }
                 //System.out.println(oneLine.length());
 
             //error.setText(line);
