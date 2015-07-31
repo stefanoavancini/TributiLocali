@@ -52,6 +52,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //final XML_data globalVariable = (XML_data) getApplicationContext();
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         benvenuto = (TextView) findViewById(R.id.benvenuto);
