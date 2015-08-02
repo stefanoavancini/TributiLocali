@@ -35,7 +35,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 
 public class MainActivity extends Activity {
@@ -50,23 +49,29 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final XML_data globalVariable = (XML_data) getApplicationContext();
         //final XML_data globalVariable = (XML_data) getApplicationContext();
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         benvenuto = (TextView) findViewById(R.id.benvenuto);
         //Button bplay = (Button) findViewById(R.id.category_match);
         Button accedi = (Button) findViewById(R.id.accedi);
+        if(globalVariable.getUsername() == null) {
+            accedi.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+                    new MyAsyncTask().execute(username.getText().toString(), password.getText().toString(), "SI", "");
+                }
+            });
+        }
+        else
+        {
 
-        accedi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                new MyAsyncTask().execute(username.getText().toString(), password.getText().toString(), "SI", "");
-            }
-        });
-
+        }
 
     }
 
@@ -125,7 +130,7 @@ public class MainActivity extends Activity {
             //result.
             progressDialog.dismiss();
             String line = "";
-            Scanner scan = new Scanner(result.toString()); // I have named your StringBuilder object sb
+            //Scanner scan = new Scanner(result.toString()); // I have named your StringBuilder object sb
             XMLParser parser = new XMLParser();
             if ((result.toString().equals("Connection problem 1")) | (result.toString().equals("Connection problem 2")) | (result.toString().equals("Parameters error"))) {
                 //benvenuto.setText("VERIFICA LA CONNESSIONE");
@@ -184,8 +189,11 @@ public class MainActivity extends Activity {
                         //myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         myIntent.putExtra("XML", XML); //Optional parameters
                         myIntent.putExtra("MTR", MATRICOLA); //Optional parameters
-                        myIntent.putExtra("username", username.getText().toString());
-                        myIntent.putExtra("password", password.getText().toString());
+
+                        final XML_data globalVariable = (XML_data) getApplicationContext();
+                        globalVariable.setUsername(username.getText().toString());
+                        globalVariable.setPassword(password.getText().toString());
+                        //globalVariable.setAuth(auth);
                         startActivity(myIntent);
                     } else {
                         benvenuto.setText("ERRORE DURANTE LA VERIFICA DEI DATI. SI PREGA DI RIPROVARE PIù TARDI");

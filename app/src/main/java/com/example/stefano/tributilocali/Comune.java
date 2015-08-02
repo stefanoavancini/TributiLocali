@@ -56,29 +56,41 @@ public class Comune extends Activity {
             }
 
         }
+        if (albumsList.isEmpty())
+        {
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put(KEY_TRIBUTI, "NESSUN TRIBUTO PRESENTE");
+            albumsList.add(map);
+            ListAdapter adapter = new SimpleAdapter(
+                    Comune.this, albumsList, R.layout.data_comune_riga, new String[]{KEY_TRIBUTI}, new int[]{R.id.Comune});
+            // updating listview
+            listitem.setAdapter(adapter);
+        }
+        else {
+            ListAdapter adapter = new SimpleAdapter(
+                    Comune.this, albumsList, R.layout.data_comune_riga, new String[]{KEY_TRIBUTI}, new int[]{R.id.Comune});
+            // updating listview
+            listitem.setAdapter(adapter);
 
-        ListAdapter adapter = new SimpleAdapter(
-                Comune.this, albumsList,R.layout.data_comune_riga, new String[] { KEY_TRIBUTI}, new int[] {R.id.Comune});
-        // updating listview
-        listitem.setAdapter(adapter);
-        /**
-         * Listview item click listener
-         * TrackListActivity will be lauched by passing album id
-         * */
-        listitem.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-                // on selecting a single album
-                // TrackListActivity will be launched to show tracks inside the album
-                Intent i = new Intent(Comune.this, Tributo.class);
-                // send album id to tracklist activity to get list of songs under that album
-                String comune = ((TextView) view.findViewById(R.id.Comune)).getText().toString();
-                String item = listitem.getItemAtPosition(position).toString();
-                i.putExtra("comune", comune);
-                i.putExtra("contribuente", contribuente);
-                i.putExtra("XML", XML);
-                startActivity(i);
-            }
-        });
+            /**
+             * Listview item click listener
+             * TrackListActivity will be lauched by passing album id
+             * */
+            listitem.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    // on selecting a single album
+                    // TrackListActivity will be launched to show tracks inside the album
+                    Intent i = new Intent(Comune.this, Tributo.class);
+                    // send album id to tracklist activity to get list of songs under that album
+                    String comune = ((TextView) view.findViewById(R.id.Comune)).getText().toString();
+                    String item = listitem.getItemAtPosition(position).toString();
+                    i.putExtra("comune", comune);
+                    i.putExtra("contribuente", contribuente);
+                    i.putExtra("XML", XML);
+                    startActivity(i);
+                }
+            });
+        }
     }
 }

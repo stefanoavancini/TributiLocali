@@ -68,6 +68,9 @@ public class Anno extends Activity {
                                 Element anno_element = (Element) anno_nodi.item(nodes_anno);
                                 HashMap<String, String> map = new HashMap<String, String>();
                                 map.put(KEY_TRIBUTI, parser.getAttribute(anno_element, "val"));
+                                map.put("SCADENZA_ACCONTO", parser.getAttribute(anno_element, "scadenza_acconto"));
+                                map.put("SCADENZA_SALDO", parser.getAttribute(anno_element,"scadenza_saldo"));
+                                map.put("SCADENZA_UNICA", parser.getAttribute(anno_element,"scadenza_unica"));
                                 anno_list.add(map);
                             }
 
@@ -80,7 +83,7 @@ public class Anno extends Activity {
 
         }
         ListAdapter adapter = new SimpleAdapter(
-                Anno.this, anno_list, R.layout.data_anno_riga, new String[]{KEY_TRIBUTI}, new int[]{R.id.Anno});
+                Anno.this, anno_list, R.layout.data_anno_riga, new String[]{KEY_TRIBUTI,"SCADENZA_ACCONTO","SCADENZA_SALDO","SCADENZA_UNICA"}, new int[]{R.id.Anno,R.id.Scadenza_acconto,R.id.Scadenza_saldo,R.id.Scadenza_totale});
         // updating listview
         listitem.setAdapter(adapter);
 

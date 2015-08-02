@@ -49,7 +49,7 @@ public class Contribuente extends Activity {
     static final String KEY_RGS = "ragione_sociale";
     static final String KEY_CF = "codice_fiscale";
     static final String KEY_MTR = "matricola";
-    private String ragione_sociale,codice_fiscale,matricola,username,password;
+    private String ragione_sociale,matricola,contribuente;
     private ProgressDialog progressDialog;
 
     ArrayList<HashMap<String, String>> albumsList;
@@ -57,14 +57,13 @@ public class Contribuente extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         final XML_data globalVariable = (XML_data) getApplicationContext();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.data_contribuente);
         Intent intent = getIntent();
         int delegati_n = 0;
         XML = intent.getStringExtra("XML");
-        username = intent.getStringExtra("username");
-        password = intent.getStringExtra("password");
         listitem = (ListView) findViewById(R.id.lv_contribuente);
 
         XMLParser parser = new XMLParser();
@@ -86,7 +85,7 @@ public class Contribuente extends Activity {
                     } else {
                         ragione_sociale = parser.getValue(e, KEY_RGS);
                         matricola = parser.getValue(e, KEY_MTR);
-                        codice_fiscale = parser.getValue(e, KEY_RGS);
+                        contribuente = ragione_sociale.trim();
                         altri_dati = parser.getValue(e, KEY_CF).trim() + " - " + parser.getValue(e, KEY_MTR);
                     }
                     map.put("ALTRI_DATI", altri_dati);
@@ -95,12 +94,27 @@ public class Contribuente extends Activity {
                         albumsList.add(map);
                     }
                 }
+                else
+                {
+                    globalVariable.setAuth(cdf);
+                }
 
             }
         }
         if(delegati_n==0)
         {
-            //vai al comune
+            if (globalVariable.getXMLdata(matricola) == null) {
+                new MyAsyncTask().execute(globalVariable.getUsername(), globalVariable.getPassword(), "", matricola);
+            }
+            else
+            {
+                Intent i = new Intent(Contribuente.this, Comune.class);
+                // send album id to tracklist activity to get list of songs under that album
+                //String contribuente = ((TextView) findViewById(R.id.Contribuente)).getText().toString();
+                i.putExtra("contribuente", contribuente.trim());
+                i.putExtra("XML",globalVariable.getXMLdata(matricola));
+                startActivity(i);
+            }
         }
         ListAdapter adapter = new SimpleAdapter(
                 Contribuente.this, albumsList,R.layout.data_contribuente_riga, new String[] { KEY_TRIBUTI,"ALTRI_DATI","MATRICOLA"}, new int[] {R.id.Contribuente,R.id.Codice_fiscale,R.id.Matricola});
@@ -115,15 +129,16 @@ public class Contribuente extends Activity {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 // on selecting a single album
                 // TrackListActivity will be launched to show tracks inside the album
-                String matricola = ((TextView) view.findViewById(R.id.Matricola)).getText().toString();
+                matricola = ((TextView) view.findViewById(R.id.Matricola)).getText().toString();
+                contribuente = ((TextView) view.findViewById(R.id.Contribuente)).getText().toString();
                 if (globalVariable.getXMLdata(matricola) == null) {
-                    new MyAsyncTask().execute(username, password, "", matricola);
+                    new MyAsyncTask().execute(globalVariable.getUsername(), globalVariable.getPassword(), "", matricola);
                 }
                 else
                 {
                     Intent i = new Intent(Contribuente.this, Comune.class);
                     // send album id to tracklist activity to get list of songs under that album
-                    String contribuente = ((TextView) findViewById(R.id.Contribuente)).getText().toString();
+                    //String contribuente = ((TextView) findViewById(R.id.Contribuente)).getText().toString();
                     i.putExtra("contribuente", contribuente.trim());
                     i.putExtra("XML",globalVariable.getXMLdata(matricola));
                     startActivity(i);
@@ -132,6 +147,10 @@ public class Contribuente extends Activity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
     private void showSimplePopUp(String errore) {
@@ -173,13 +192,13 @@ public class Contribuente extends Activity {
                 showSimplePopUp("VERIFICA LA CONNESSIONE");
             }
             else {
-                Document doc = parser.getDomElement(result.toString()); // getting DOM element
+                //Document doc = parser.getDomElement(result.toString()); // getting DOM element
                 XML = result.toString();
                 final XML_data globalVariable = (XML_data) getApplicationContext();
                 globalVariable.setXMLdata(matricola,XML);
                 Intent i = new Intent(Contribuente.this, Comune.class);
                 // send album id to tracklist activity to get list of songs under that album
-                String contribuente = ((TextView) findViewById(R.id.Contribuente)).getText().toString();
+                //String contribuente = ((TextView) findViewById(R.id.Contribuente)).getText().toString();
 
                 i.putExtra("contribuente", contribuente.trim());
                 i.putExtra("XML",XML);
