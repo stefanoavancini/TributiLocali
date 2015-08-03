@@ -2,6 +2,7 @@ package com.example.stefano.tributilocali;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -65,6 +66,13 @@ public class Comune extends Activity {
                     Comune.this, albumsList, R.layout.data_comune_riga, new String[]{KEY_TRIBUTI}, new int[]{R.id.Comune});
             // updating listview
             listitem.setAdapter(adapter);
+
+            listitem.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    view.setBackgroundColor(Color.WHITE);
+                }
+            });
         }
         else {
             ListAdapter adapter = new SimpleAdapter(

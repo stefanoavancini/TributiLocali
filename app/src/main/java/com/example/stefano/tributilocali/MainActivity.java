@@ -196,7 +196,7 @@ public class MainActivity extends Activity {
                         //globalVariable.setAuth(auth);
                         startActivity(myIntent);
                     } else {
-                        benvenuto.setText("ERRORE DURANTE LA VERIFICA DEI DATI. SI PREGA DI RIPROVARE PIù TARDI");
+                        benvenuto.setText("ERRORE DURANTE LA VERIFICA DEI DATI. SI PREGA DI RIPROVARE PIU' TARDI");
                     }//USER = separated[0];
                     //PASSWORD = separated[1];
                 }
