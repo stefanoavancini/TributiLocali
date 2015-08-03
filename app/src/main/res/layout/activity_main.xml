@@ -92,7 +92,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="70dp"
-        android:text="Ai sensi bla bla bla bla bla\nbla bla bla bla blaa" />
+        android:text="Ai sensi bla bla bla bla bla\nbla bla bla bla bla" />
 
 
 </RelativeLayout>
