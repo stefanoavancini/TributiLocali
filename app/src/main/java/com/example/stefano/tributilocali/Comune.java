@@ -73,6 +73,7 @@ public class Comune extends Activity {
                     view.setBackgroundColor(Color.WHITE);
                 }
             });
+            //acc
         }
         else {
             ListAdapter adapter = new SimpleAdapter(

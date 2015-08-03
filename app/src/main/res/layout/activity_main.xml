@@ -1,34 +1,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <TextView
+        android:id="@+id/benvenuto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/benvenuto"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="" />
 
+    <!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="USERNAME"
         android:id="@+id/testo_username"
         android:layout_below="@+id/benvenuto"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp"
+
+        />-->
 
     <EditText
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/username"
-        android:ems="10"
-        android:inputType="textCapCharacters"
         android:layout_below="@+id/testo_username"
-        android:maxLength="16"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp"
         android:digits="0,1,2,3,4,5,6,7,8,9,QWERTYUIOPLKJHGFDSAZXCVBNM"
-        android:layout_centerHorizontal="true" />
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textCapCharacters"
+        android:maxLength="16" />
 
+    <!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,30 +45,54 @@
         android:id="@+id/testo_pass"
         android:layout_below="@+id/username"
         android:layout_centerHorizontal="true" />
-
+-->
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
         android:id="@+id/password"
-        android:layout_below="@+id/testo_pass"
-        android:layout_centerHorizontal="true" />
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ACCEDI"
-        android:id="@+id/accedi"
+        android:layout_below="@+id/testo_pass"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="270dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword" />
+    <!--
+        <Button
+
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="ACCEDI"
+         android:id="@+id/accedi"
+         android:layout_centerHorizontal="true"
+         android:layout_below="@+id/password"
+         android:textSize="10pt"
+         android:width="100pt"
+         android:height="20pt"/>
+         -->
+    <Button
+        android:id="@+id/accedi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/password"
-        android:textSize="15pt"
-        android:width="150pt"
-        android:height="35pt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:width="100pt"
+        android:height="20pt"
+        android:background="@drawable/rounded"
+        android:text="ACCEDI"
+        android:textSize="10pt"
+
+
         />
 
-
-
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:text="Ai sensi bla bla bla bla bla\nbla bla bla bla bla" />
 
 
 </RelativeLayout>
