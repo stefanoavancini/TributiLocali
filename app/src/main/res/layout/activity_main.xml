@@ -96,7 +96,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="@dimen/abc_text_size_display_1_material"
                 android:layout_marginRight="@dimen/abc_text_size_display_1_material"
-                android:focusable="true" />bns
+                android:focusable="true" />
 
             <EditText
                 android:id="@+id/password"
