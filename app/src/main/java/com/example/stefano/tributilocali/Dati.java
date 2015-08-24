@@ -12,8 +12,15 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 /**
  * Created by stefano on 16/07/2015.
@@ -120,6 +127,8 @@ public class Dati extends Activity{
                                         for(int nodes_dati=0;nodes_dati<n_dati_nodi;nodes_dati++)
                                         {
                                             Element eeee = (Element) dati_nodi.item(nodes_dati);
+                                            if (eeee.getTagName().equals("dati"))
+                                            {
                                             HashMap<String, String> map = new HashMap<String, String>();
                                             String categoria = parser.getValue(eeee,KEY_CATEGORIA) + " Rendita " + parser.getValue(eeee,KEY_RENDITA);
                                             map.put(KEY_CATEGORIA, categoria);
@@ -129,13 +138,19 @@ public class Dati extends Activity{
                                             }
                                             dati_catastali += "Sub. " + parser.getValue(eeee,KEY_SUBALTERNO);
                                             String via = parser.getValue(eeee,KEY_VIA).trim() + " " + parser.getValue(eeee,KEY_CIVICO) + " " + parser.getValue(eeee,KEY_BARRATO);
-                                            map.put(KEY_VIA, via);
-                                            map.put(KEY_SEZIONE, dati_catastali);
-                                            String quota = parser.getValue(eeee,KEY_QUOTA) + " Mesi: " + parser.getValue(eeee,KEY_MESI);
-                                            map.put(KEY_QUOTA, quota);
-                                            map.put(KEY_ABIT_PRINC,"Abitazione principale: " + parser.getValue(eeee,KEY_ABIT_PRINC));
-                                            map.put(KEY_TOTALE,"€ " + parser.getValue(eeee,KEY_TOTALE));
-                                            dati_list.add(map);
+                                                map.put(KEY_VIA, via);
+                                                map.put(KEY_SEZIONE, dati_catastali);
+                                                String quota = parser.getValue(eeee,KEY_QUOTA) + " Mesi: " + parser.getValue(eeee,KEY_MESI);
+                                                map.put(KEY_QUOTA, quota);
+                                                map.put(KEY_ABIT_PRINC, "Abitazione principale: " + parser.getValue(eeee, KEY_ABIT_PRINC));
+                                                String importo = parser.getValue(eeee, KEY_TOTALE);
+                                                //importo = "1234.568";
+                                                Double impdbl = Double.parseDouble(importo);
+                                                map.put(KEY_TOTALE, "€ " + String.format(Locale.GERMANY,"%.2f", impdbl));
+
+
+                                                dati_list.add(map);
+                                            }
                                         }
                                     }
 

@@ -31,7 +31,6 @@
         android:layout_alignParentStart="false"
         android:layout_alignParentRight="false"
         android:layout_alignParentEnd="false"
-        android:layout_alignBottom="@+id/rectimage"
         android:layout_alignParentBottom="true">
     </ImageView>
 
@@ -91,6 +90,7 @@
                 android:inputType="textCapCharacters"
                 android:maxLength="16"
                 android:fontFamily="sans-serif-light"
+                android:text="BNSLRT58D18H612J"
                 android:layout_marginTop="@dimen/abc_text_size_display_3_material"
                 android:longClickable="true"
                 android:layout_gravity="center_horizontal"
@@ -103,6 +103,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/testo_pass"
+                android:text="ma180458"
                 android:layout_centerHorizontal="true"
                 android:ems="10"
                 android:hint="Password"
