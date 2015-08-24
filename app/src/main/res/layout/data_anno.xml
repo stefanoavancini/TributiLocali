@@ -2,12 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#ffd3d3d3"
+    android:clickable="false"
+    android:dividerPadding="@dimen/abc_search_view_preferred_width"
+    android:focusableInTouchMode="true"
+    android:id="@+id/LinearLayout_data_anno">
+
+
+
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/lv_anno"
-        android:cacheColorHint="@android:color/transparent"
-        android:dividerHeight="2dp"
+        android:cacheColorHint="#ffefefef"
+        android:dividerHeight="@dimen/abc_action_bar_default_padding_material"
+        android:layout_marginLeft="@dimen/abc_dropdownitem_text_padding_left"
+        android:layout_marginTop="@dimen/abc_dropdownitem_text_padding_left"
+        android:layout_marginRight="@dimen/abc_dropdownitem_text_padding_left"
+        android:clickable="true"
+        android:elevation="@dimen/abc_button_inset_horizontal_material"
+        android:background="@color/bright_foreground_inverse_material_light"
+        android:divider="#ffd5d5d5"
         />
 </LinearLayout>
+
+

@@ -1,9 +1,12 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="@drawable/settings"
+    android:gravity="bottom"
+    android:id="@+id/LayoutCont1">
 
     <TextView
         android:id="@+id/benvenuto"
@@ -12,87 +15,133 @@
         android:layout_centerHorizontal="true"
         android:text="" />
 
-    <!--
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="USERNAME"
-        android:id="@+id/testo_username"
-        android:layout_below="@+id/benvenuto"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="220dp"
-
-        />-->
-
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/testo_username"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="220dp"
-        android:digits="0,1,2,3,4,5,6,7,8,9,QWERTYUIOPLKJHGFDSAZXCVBNM"
-        android:ems="10"
-        android:hint="Username"
-        android:inputType="textCapCharacters"
-        android:maxLength="16" />
-
-    <!--
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PASSWORD"
-        android:id="@+id/testo_pass"
-        android:layout_below="@+id/username"
-        android:layout_centerHorizontal="true" />
--->
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/testo_pass"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="270dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword" />
-    <!--
-        <Button
-
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="ACCEDI"
-         android:id="@+id/accedi"
-         android:layout_centerHorizontal="true"
-         android:layout_below="@+id/password"
-         android:textSize="10pt"
-         android:width="100pt"
-         android:height="20pt"/>
-         -->
-    <Button
-        android:id="@+id/accedi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:width="100pt"
-        android:height="20pt"
-        android:background="@drawable/rounded"
-        android:text="ACCEDI"
-        android:textSize="10pt"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="0dip"
+    android:layout_weight="0.8">
 
 
-        />
+    <ImageView
+        android:id="@+id/rectimage"
+        android:contentDescription="@null"
+        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:src="@drawable/gray_shadow"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true">
+    </ImageView>
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="70dp"
-        android:text="Ai sensi bla bla bla bla bla\nbla bla bla bla bla" />
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/LayoutCont2">
+
+        <ImageView
+            android:id="@+id/rectimage_bck"
+            android:contentDescription="@null"
+            android:layout_width="match_parent"
+            android:src="@drawable/backgnd_square"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+        </ImageView>
+
+
+        <ImageView
+            android:id="@+id/log_rect"
+            android:contentDescription="@null"
+            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:src="@drawable/login_rect"
+            android:paddingStart="@dimen/abc_text_size_headline_material"
+            android:paddingEnd="@dimen/abc_text_size_headline_material"
+            android:layout_marginTop="35dp"
+            android:layout_alignTop="@+id/rectimage_bck"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+        </ImageView>
+
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:gravity="bottom"
+            android:id="@+id/LayoutCont3">
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/testo_username"
+                android:layout_centerHorizontal="true"
+                android:digits="0,1,2,3,4,5,6,7,8,9,QWERTYUIOPLKJHGFDSAZXCVBNM"
+                android:ems="10"
+                android:hint="Username"
+                android:inputType="textCapCharacters"
+                android:maxLength="16"
+                android:fontFamily="sans-serif-light"
+                android:text="BNSLRT58D18H612J"
+                android:layout_marginTop="@dimen/abc_text_size_display_3_material"
+                android:longClickable="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/abc_text_size_display_1_material"
+                android:layout_marginRight="@dimen/abc_text_size_display_1_material"
+                android:focusable="true" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/testo_pass"
+                android:text="ma180458"
+                android:layout_centerHorizontal="true"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:fontFamily="sans-serif-light"
+                android:layout_marginTop="@dimen/abc_text_size_display_1_material"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="@dimen/abc_text_size_display_1_material"
+                android:layout_marginLeft="@dimen/abc_text_size_display_1_material" />
+
+            <Button
+                android:id="@+id/accedi"
+                android:layout_width="@dimen/abc_search_view_preferred_width"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/password"
+                android:layout_centerHorizontal="true"
+                android:width="100pt"
+                android:background="@drawable/accedi_butt"
+                android:text="ACCEDI"
+                android:textSize="10pt"
+
+                android:layout_marginTop="@dimen/abc_text_size_display_3_material"
+                android:layout_gravity="center_horizontal" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="Ai sensi bla bla bla bla bla\nbla bla bla bla bla"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/tab_host_default_height" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
 
 </RelativeLayout>
+ </LinearLayout>
+
