@@ -2,11 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#ffd3d3d3"
     android:orientation="vertical">
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/lv_comune"
-        android:cacheColorHint="@android:color/transparent"
-        android:dividerHeight="2dp" />
+        android:cacheColorHint="#ffefefef"
+        android:dividerHeight="@dimen/abc_action_bar_default_padding_material"
+        android:elevation="@dimen/abc_button_inset_horizontal_material"
+        android:background="#ffd3d3d3"
+        android:divider="#ffd3d3d3"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp" />
 </LinearLayout>

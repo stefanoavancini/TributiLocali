@@ -2,12 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#ffd3d3d3"
     android:orientation="vertical" >
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/lv_contribuente"
         android:cacheColorHint="@android:color/transparent"
+        android:layout_marginLeft="@dimen/abc_dropdownitem_text_padding_left"
+        android:layout_marginTop="8dip"
         android:dividerHeight="2dp"
+        android:elevation="@dimen/abc_button_inset_horizontal_material"
+        android:background="#ffd3d3d3"
+        android:divider="#ffd3d3d3"
+
         />
 </LinearLayout>

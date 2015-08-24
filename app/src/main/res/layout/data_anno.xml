@@ -28,3 +28,35 @@
 </LinearLayout>
 
 
+
+    <!--
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="#ffd3d3d3"
+        android:clickable="false"
+        android:dividerPadding="@dimen/abc_text_size_medium_material"
+        android:focusableInTouchMode="true"
+        android:id="@+id/LinearLayout_data_anno"
+        android:divider="@color/background_floating_material_dark">
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/lv_anno"
+            android:cacheColorHint="#e8e8e8"
+            android:layout_marginLeft="@dimen/abc_dropdownitem_text_padding_left"
+            android:layout_marginTop="@dimen/abc_dropdownitem_text_padding_left"
+            android:layout_marginRight="@dimen/abc_dropdownitem_text_padding_left"
+            android:clickable="true"
+            android:elevation="@dimen/abc_button_inset_horizontal_material"
+            android:background="#ffd3d3d3"
+            android:divider="#d3223c"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="true"
+            android:dividerHeight="5dp" />
+    </LinearLayout>
+    -->

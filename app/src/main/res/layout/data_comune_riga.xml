@@ -3,14 +3,18 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="10dp" >
+    android:background="@drawable/list_butt"
+    android:paddingTop="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
 
     <TextView
         android:id="@+id/Comune"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Nessun Comune presente"
-        android:textColor="#27ae60"
+        android:textColor="#242424"
+        android:background="@drawable/list_butt"
         android:padding="18dp"
         android:textSize="22dp" />
 

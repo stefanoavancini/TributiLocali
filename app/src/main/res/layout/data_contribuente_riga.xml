@@ -3,6 +3,9 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/list_butt"
+    android:paddingTop="5dp"
+    android:paddingRight="5dp"
     android:paddingLeft="10dp" >
 
     <TextView
@@ -10,9 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nessun Contribuente presente"
-        android:textColor="#27ae60"
         android:paddingLeft="18dp"
         android:paddingTop="10dp"
+        android:textColor="#263238"
         android:textSize="22dp" />
     <TextView
         android:id="@+id/Codice_fiscale"

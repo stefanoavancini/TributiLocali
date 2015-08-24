@@ -19,7 +19,6 @@ android:orientation="vertical"
     android:layout_marginRight="@dimen/abc_dropdownitem_text_padding_left"
     android:clickable="true"
     android:elevation="@dimen/abc_button_inset_horizontal_material"
-    android:background="@color/bright_foreground_inverse_material_light"
-    android:divider="#ffd5d5d5"
+    android:background="#ffd3d3d3"
     />
 </LinearLayout>
