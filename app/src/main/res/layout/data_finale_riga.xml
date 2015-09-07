@@ -31,49 +31,50 @@
         android:id="@+id/dati_catastali"
         android:layout_centerHorizontal="false" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chh"
-        android:textColor="#263238"
-        android:paddingTop="5sp"
-        android:paddingBottom="5sp"
-        android:textSize="15sp"
-        android:id="@+id/categoria"
-        android:layout_centerHorizontal="false" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="QUOTA"
-        android:textColor="#263238"
-        android:id="@+id/quota"
-        android:layout_centerHorizontal="false" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SI/NO"
+            android:text="Chh"
             android:textColor="#263238"
-            android:id="@+id/abit_princ"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            android:textSize="15sp"
+            android:id="@+id/categoria"
             android:layout_centerHorizontal="false" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SI/NO"
+                android:textColor="#263238"
+                android:id="@+id/abit_princ"
+                android:layout_centerHorizontal="false" />
+        </LinearLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="€ 0"
+                    android:paddingRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:textSize="28sp"
+                    android:id="@+id/importo"
+                    android:textColor="#263238"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical" />
+            </RelativeLayout>
+        </LinearLayout>
 </LinearLayout>
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="10dp"
-        android:layout_gravity="center_vertical">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:text="€ 0"
-        android:paddingRight="10dp"
-        android:layout_alignParentRight="true"
-        android:textSize="28sp"
-        android:id="@+id/importo"
-        android:textColor="#263238"
-        android:gravity="center_vertical"
-        android:layout_gravity="center_vertical" />
-
-</RelativeLayout>
 </LinearLayout>

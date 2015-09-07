@@ -73,6 +73,233 @@ public class Dati extends Activity{
     static final String KEY_CODICE_FISCALE = "CODICE_FISCALE";
     static final String KEY_MATRICOLA = "MATRICOLA";
 
+    private String descrizionecategoria(String categoria)
+    {
+    if(categoria=="A01")
+       return "ABITAZIONI DI TIPO SIGNORILE";
+    else if(categoria=="A02")
+        return "ABITAZIONI DI TIPO CIVILE";
+    else if(categoria=="A03")
+        return"ABITAZIONI DI TIPO ECONOMICO";
+    else if(categoria=="A04")
+        return "ABITAZIONI DI TIPO POPOLARE";
+    else if(categoria=="A05")
+        return "ABITAZIONI DI TIPO ULTRAPOPOLARE";
+    else if(categoria=="A06")
+        return "ABITAZIONI DI TIPO RURALE";
+    else if(categoria=="A07")
+        return "ABITAZIONI IN VILLINI";
+    else if(categoria=="A08")
+        return "ABITAZIONI IN VILLE";
+    else if(categoria=="A09")
+        return "CASTELLI,PALAZZI DI EMINENTI PREGI ARTISTICI E STORICI";
+    else if(categoria=="A10")
+        return "UFFICI E STUDI PRIVATI";
+    else if(categoria=="A11")
+        return "ABITAZIONI ED ALLOGGI TIPICI DEI LUOGHI";
+    else if(categoria=="B01")
+        return "COLLEGI E CONVITTI, EDUCANDATI, RICOVERI, ORFANOTROFI, OSPIZI, CONVENTI, SEMINARI, CASERME";
+    else if(categoria=="B02")
+        return "CASE DI CURA ED OSPEDALI";
+    else if(categoria=="B03")
+        return "PRIGIONI E RIFORMATORI";
+    else if(categoria=="B04")
+        return "UFFICI PUBBLICI";
+    else if(categoria=="B05")
+        return "SCUOLE, LABORATORI SCIENTIFICI";
+    else if(categoria=="B06")
+        return "BIBLIOTECHE, PINACOTECHE, MUSEI, GALLERIE, ACCADEMIE CHE NON HANNO SEDE IN EDIFICI DELLA CATEGORIA A/09";
+    else if(categoria=="B07")
+        return "CAPPELLE ED ORATORI NON DESTINATI ALL`ESERCIZIO PUBBLICO DEI CULTI";
+    else if(categoria=="B08")
+        return "MAGAZZINI SOTTERANEI PER DEPOSITO DERRATE";
+    else if(categoria=="C01")
+        return "NEGOZI E BOTTEGHE";
+    else if(categoria=="C02")
+        return "MAGAZZINI E LOCALI DI DEPOSITO";
+    else if(categoria=="C03")
+        return "LABORATORI PER ARTI E MESTIERI";
+    else if(categoria=="C04")
+        return "FABBRICATI E LOCALI PER ESERCIZI SPORTIVI (SENZA FINI DI LUCRO)";
+    else if(categoria=="C05")
+        return "STABILIMENTI BALNEARI E DI ACQUE CURATIVE (SENZA FINI DI LUCRO)";
+    else if(categoria=="C06")
+        return "STALLE, SCUDERIE, RIMESSE E AUTORIMESSE (SENZA FINI DI LUCRO)";
+    else if(categoria=="C07")
+        return "TETTOIE CHIUSE OD APERTE";
+    else if(categoria=="D01")
+        return "OPIFICI";
+    else if(categoria=="D02")
+        return "ALBERGHI E PENSIONI";
+    else if(categoria=="D03")
+        return "TEATRI, CINEMATOGRAFI, SALE PER CONCERTI E SPETTACOLI E SIMILI (CON FINI DI LUCRO)";
+    else if(categoria=="D04")
+        return "CASE DI CURA ED OSPEDALI";
+    else if(categoria=="D05")
+        return "ISTITUTO DI CREDITO, CAMBIO E ASSICURAZIONE (CON FINI DI LUCRO)";
+    else if(categoria=="D06")
+        return "FABBRICATI E LOCALI PER ESERCIZI SPORTIVI (CON FINI DI LUCRO)";
+    else if(categoria=="D07")
+        return "FABBRICATI COSTRUITI O ADATTATI PER LE SPECIALI ESIGENZE DI UN'ATTIVIT&Agrave; INDUSTRIALE";
+    else if(categoria=="D08")
+        return "FABBRICATI COSTRUITI O ADATTATI PER LE SPECIALI ESIGENZE DI UN'ATTIVIT&Agrave; COMMERCIALE ";
+    else if(categoria=="D09")
+        return "EDIFICI GALLEGGIANTI O SOSPESI ASSICURATI A PUNTI FISSI DEL SUOLO, PONTI PRIVATI SOGGETTI A PEDAGGIO";
+    else if(categoria=="D10")
+        return "FABBRICATI CON FUNZIONI PRODUTTIVE CONNESSE ALLE ATTIVIT&Agrave; AGRICOLE";
+    else if(categoria=="FBR")
+        return "AREA FABBRICABILE";
+    else if(categoria=="T00")
+        return "MUSEI, BIBLIOTECHE, SCUOLE, ASSOCIAZIONI, LUOGHI DI CULTO";
+    else if(categoria=="TT0")
+        return "CINEMATOGRAFI E TEATRI";
+    else if(categoria=="KK0")
+        return "CAUTORIMESSE E MAGAZZINI SENZA ALCUNA VENDITA DIRETTA";
+    else if(categoria=="C00")
+        return "CAMPEGGI, DISTRIBUTORI CARBURANTI, IMPIANTI SPORTIVI";
+    else if(categoria=="CC0")
+        return "STABILIMENTI BALNEARI";
+    else if(categoria=="E00")
+        return "ESPOSIZIONI, AUTOSALONI";
+    else if(categoria=="A00")
+        return "ALBERGHI CON RISTORANTE";
+    else if(categoria=="AA0")
+        return "ALBERGHI SENZA RISTORANTE";
+    else if(categoria=="X00")
+        return "CASE DI CURA E RIPOSO";
+    else if(categoria=="XX0")
+        return "OSPEDALI";
+    else if(categoria=="Q00")
+        return "UFFICI, AGENZIE, STUDI PROFESSIONALI";
+    else if(categoria=="U00")
+        return "BANCHE E ISTITUTI DI CREDITO";
+    else if(categoria=="N00")
+        return "NEGOZI ABBIGLIAMENTO, CALZATURE, LIBRERIA, CARTOLERIA, FERRAMENTA E ALTRI BENI DUREVOLI";
+    else if(categoria=="F00")
+        return "EDICOLE, FARMACIE, TABACCAIO, PLURILICENZE";
+    else if(categoria=="P00")
+        return "NEGOZI PARTICOLARI QUALI FILATELIA, TENDE E TESSUTI, TAPPETI, CAPPELLI E OMBRELLI, ANTIQUARIATO";
+    else if(categoria=="Z00")
+        return "BANCHI DI MERCATO BENI DUREVOLI";
+    else if(categoria=="V00")
+        return "ATTIVITÀ ARTIGIANALI TIPO BOTTEGHE: PARRUCCHIERE, BARBIERE, ESTETISTA";
+    else if(categoria=="W00")
+        return "ATTIVITÀ ARTIGIANALI TIPO BOTTEGHE: FALEGNAME, IDRAULICO, FABBRO, ELETTRICISTA";
+    else if(categoria=="K00")
+        return "CARROZZERIA, AUTOFFICINA, ELETTRAUTO";
+    else if(categoria=="Y00")
+        return "ATTIVITÀ INDUSTRIALI CON CAPANNONI DI PRODUZIONE";
+    else if(categoria=="WW0")
+        return "ATTIVITÀ ARTIGIANALI DI PRODUZIONE BENI SPECIFICI";
+    else if(categoria=="R00")
+        return "RISTORANTI, TRATTORIE, OSTERIE, PIZZERIE, PUB";
+    else if(categoria=="M00")
+        return "MENSE, BIRRERIE, AMBURGHERIE";
+    else if(categoria=="B00")
+        return "BAR, CAFFE, PASTICCERIA";
+    else if(categoria=="S00")
+        return "SUPERMERCATO, PANE E PASTA, MACELLERIA, SALUMI E FORMAGGI, GENERI ALIMENTARI";
+    else if(categoria=="J00")
+        return "PLURILICENZE ALIMENTARI E/O MISTE";
+    else if(categoria=="O00")
+        return "ORTOFRUTTA, PESCHERIE, FIORI E PIANTE, PIZZA AL TAGLIO, GELATERIE D'ASPORTO";
+    else if(categoria=="I00")
+        return "IPERMERCATI DI GENERI MISTI";
+    else if(categoria=="ZZ0")
+        return "BANCHI DI MERCATO GENERE ALIMENTARI";
+    else if(categoria=="DD0")
+        return "DISCOTECHE, NIGHT CLUB";
+    else if(categoria=="DOM")
+        return "UTENZA DOMESTICA ABITAZIONE";
+    else if(categoria=="DOG")
+        return "GARAGE/POSTO AUTO";
+    else if(categoria=="DOP")
+        return "ALTRE PERTINENZE";
+    else if(categoria=="???")
+        return "DIFFERENZE DOVUTE";
+    else if(categoria=="!!!")
+        return "NOTA DI ADDEBITO";
+    else if(categoria=="***")
+        return "NOTA DI RIMBORSO";
+    else if(categoria=="100")
+        return "ESCLUSO IN QUANTO IL RIFIUTO VIENE RIUTILIZZATO";
+    else if(categoria=="101")
+        return "ESCLUSO PER SUPERAMENTO LIMITI";
+    else if(categoria=="102")
+        return "ESCLUSO IN QUANTO RIFIUTO SPECIALE";
+    else if(categoria=="103")
+        return "ESCLUSO IN QUANTO LA PRESENZA UMANA È SPORADICA";
+    else if(categoria=="104")
+        return "CARICAMENTO DI COMODO PER CRM";
+    else if(categoria=="21")
+        return "ISCRITTI AIRE";
+    else if(categoria=="22")
+        return "DANNO ECONOMICO PER PRECLUS TRAFFICO";
+    else if(categoria=="23")
+        return "ABITAZ. CON PRATICHE DI COMPOSTAGGIO";
+    else if(categoria=="24")
+        return "PERS.ULTRA 65 CON REDD.MINORE DI";
+    else if(categoria=="25")
+        return "NUCLEI 6 O + COMP.CON REDD.MINORE DI";
+    else if(categoria=="26")
+        return "SCUOLE PUBBLICHE 1 GRADO (ELEM.-MEDIE)";
+    else if(categoria=="27")
+        return "GRAVI SITUAZIONI A DISCREZIONE GIUNTA C.";
+    else if(categoria=="29")
+        return "CASA GEN.PICCOLE SUORE SACRA FAM.";
+    else if(categoria=="30")
+        return "UBICAZ.ESTERNA ALLA ZONA SERVIZIO";
+    else if(categoria=="31")
+        return "ENTI O ASSOC. SENZA FINI DI LUCRO";
+    else if(categoria=="32")
+        return "STAGIONALITA'";
+    else if(categoria=="34")
+        return "LOC.COMUNE/UNIONE LOCATI ASS.SENZA LUCRO";
+    else if(categoria=="40")
+        return "ESENZIONI PER MINIMO VITALE";
+    else if(categoria=="50")
+        return "FAMIGLIE CON SOGGETTI DIVERS.ABILI";
+    else if(categoria=="51")
+        return "FORZE E ARMATE SIA MILITARI CHE CIVILI";
+    else if(categoria=="52")
+        return "ABIT.DISPOS.RESIDENTI";
+    else if(categoria=="53")
+        return "RESIDENTI > 4 COMPONENTI";
+    else if(categoria=="54")
+        return "USO DISCONTINUO";
+    else if(categoria=="55")
+        return "UTIL.ESCLUS.ASS.SPORTIVE";
+    else if(categoria=="56")
+        return "ABIT.A DISPOSIZ.RES.+ZONE NON SERV.";
+    else if(categoria=="70")
+        return "CASE RIPOSO QUOTA RIF.SPECIALI";
+    else if(categoria=="71")
+        return "AMBULATORI VETERINARI";
+    else if(categoria=="80")
+        return "LABORATORI FOTOGRAFICI ED ELIOGRAFICI";
+    else if(categoria=="81")
+        return "LAVANDERIE A SECCO";
+    else if(categoria=="82")
+        return "ELETTRAUTO E GOMMISTI";
+    else if(categoria=="83")
+        return "TIPOG. STAMPERIE SERIGR. INCIS. VETRERIE";
+    else if(categoria=="84")
+        return "MANUFAT. DI VERNICIATURA GALVANOT.CERAMI";
+    else if(categoria=="85")
+        return "AUTOCARROZZERIE AUTOFFICINE";
+    else if(categoria=="86")
+        return "LATTON.CARP.METALLICA LAV.PLAST.MECC.";
+    else if(categoria=="87")
+        return "LABORATOTIO ODONTOTECNICO";
+    else if(categoria=="88")
+        return "SEGHERIE E FALEGNAMERIE";
+    else if(categoria=="89")
+        return "AMBULATORI DENTISTICI";
+    else if(categoria=="98")
+        return "SOSPESO";
+    return categoria;
+    }
+
     ArrayList<HashMap<String, String>> dati_list;
 
     @Override
@@ -130,24 +357,30 @@ public class Dati extends Activity{
                                             if (eeee.getTagName().equals("dati"))
                                             {
                                             HashMap<String, String> map = new HashMap<String, String>();
-                                            String categoria = parser.getValue(eeee,KEY_CATEGORIA) + " Rendita " + parser.getValue(eeee,KEY_RENDITA);
-                                            map.put(KEY_CATEGORIA, categoria);
+
+                                                //String categoria = parser.getValue(eeee,KEY_CATEGORIA) + " Rendita " + parser.getValue(eeee,KEY_RENDITA);
+                                                String descrizione_categoria = descrizionecategoria(parser.getValue(eeee,KEY_CATEGORIA));
+                                                String rendita = parser.getValue(eeee, KEY_RENDITA);
+                                                Double rendbl = Double.parseDouble(rendita);
+                                                String quota = parser.getValue(eeee,KEY_QUOTA) + "% Mesi: " + parser.getValue(eeee,KEY_MESI);
+                                                rendita = "Rendita € " + String.format(Locale.GERMANY,"%.2f", rendbl) + " Possesso: " + quota + "";
+                                                map.put(KEY_CATEGORIA, rendita);
+
                                             String dati_catastali = "C.C. " + parser.getValue(eeee, KEY_SEZIONE) + "P.Ed. " + parser.getValue(eeee,KEY_PED);
                                             if(!parser.getValue(eeee,KEY_PED_BARRATO).equals("0")){
                                                 dati_catastali += "/" + parser.getValue(eeee,KEY_PED_BARRATO);
                                             }
-                                            dati_catastali += "Sub. " + parser.getValue(eeee,KEY_SUBALTERNO);
+                                            dati_catastali += " Sub. " + parser.getValue(eeee,KEY_SUBALTERNO) + " - " + descrizione_categoria;
                                             String via = parser.getValue(eeee,KEY_VIA).trim() + " " + parser.getValue(eeee,KEY_CIVICO) + " " + parser.getValue(eeee,KEY_BARRATO);
+
+                                            String importo = parser.getValue(eeee, KEY_TOTALE);
+                                            Double impdbl = Double.parseDouble(importo);
+
                                                 map.put(KEY_VIA, via);
                                                 map.put(KEY_SEZIONE, dati_catastali);
-                                                String quota = parser.getValue(eeee,KEY_QUOTA) + " Mesi: " + parser.getValue(eeee,KEY_MESI);
-                                                map.put(KEY_QUOTA, quota);
+                                                //map.put(KEY_QUOTA, quota);
                                                 map.put(KEY_ABIT_PRINC, "Abitazione principale: " + parser.getValue(eeee, KEY_ABIT_PRINC));
-                                                String importo = parser.getValue(eeee, KEY_TOTALE);
-                                                //importo = "1234.568";
-                                                Double impdbl = Double.parseDouble(importo);
                                                 map.put(KEY_TOTALE, "€ " + String.format(Locale.GERMANY,"%.2f", impdbl));
-
 
                                                 dati_list.add(map);
                                             }
