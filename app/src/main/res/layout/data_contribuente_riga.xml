@@ -4,9 +4,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/list_butt"
+    android:layout_marginLeft="@dimen/abc_dropdownitem_text_padding_left"
+    android:layout_marginRight="@dimen/abc_dropdownitem_text_padding_left"
+    android:layout_marginBottom="@dimen/abc_dropdownitem_text_padding_left"
     android:paddingTop="5dp"
     android:paddingRight="5dp"
-    android:paddingLeft="10dp" >
+    android:paddingLeft="5dp">
 
     <TextView
         android:id="@+id/Contribuente"
