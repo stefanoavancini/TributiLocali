@@ -4,9 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
-    android:background="@drawable/settings"
+    android:background="@drawable/gestellogo"
     android:gravity="bottom"
-    android:id="@+id/LayoutCont1">
+    android:id="@+id/LayoutCont1"
+    android:baselineAligned="false">
 
     <TextView
         android:id="@+id/benvenuto"

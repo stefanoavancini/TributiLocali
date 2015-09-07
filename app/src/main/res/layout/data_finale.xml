@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
     android:background="#ffd3d3d3"
     android:clickable="false"
     android:dividerPadding="@dimen/abc_search_view_preferred_width"
     android:focusableInTouchMode="true"
     android:id="@+id/LinearLayout_data_anno"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:orientation="vertical">
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="@dimen/abc_config_prefDialogWidth"
@@ -23,53 +23,143 @@
         android:background="@color/bright_foreground_inverse_material_light"
         android:divider="#ffd5d5d5" />
 
-    <LinearLayout
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        android:background="#cccccc"
-        android:gravity="center">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/abc_button_padding_horizontal_material"
+        android:layout_margin="@dimen/abc_button_padding_horizontal_material"
+        android:layout_marginLeft="@dimen/abc_button_padding_horizontal_material"
+        android:layout_marginRight="@dimen/abc_button_padding_horizontal_material"
+        android:layout_marginBottom="@dimen/abc_button_padding_horizontal_material"
+        android:background="@drawable/footer_rect">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="Riga Uno"
-            android:textColor="#000"
-            android:textSize="20sp"
-            android:layout_gravity="left"
-            android:paddingLeft="20dp"
-            android:id="@+id/riga1" />
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/abc_text_size_body_2_material">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginBottom="15dp"
-            android:text="Riga Due"
-            android:textColor="#000"
-            android:textSize="20sp"
-            android:paddingLeft="20dp"
-            android:layout_gravity="left"
-            android:paddingTop="15dp"
-            android:id="@+id/riga2" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Riga Uno"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:layout_gravity="left"
+                android:paddingLeft="20dp"
+                android:id="@+id/riga1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginBottom="15dp"
-            android:text="Riga Tre"
-            android:textColor="#000"
-            android:textSize="20sp"
-            android:layout_gravity="left"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:id="@+id/riga3" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="15dp"
+                android:text="Riga Due"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:paddingLeft="20dp"
+                android:layout_gravity="left"
+                android:paddingTop="15dp"
+                android:id="@+id/riga2" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="15dp"
+                android:text="Riga Tre"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:layout_gravity="left"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:id="@+id/riga3" />
+        </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/abc_text_size_body_2_material"
+            android:layout_marginRight="@dimen/abc_text_size_headline_material">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Euro1"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:layout_gravity="right"
+                android:paddingLeft="20dp"
+                android:id="@+id/Importo1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_gravity="right"
+                android:layout_marginBottom="15dp"
+                android:text="Euro2"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:id="@+id/importo2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="15dp"
+                android:text="Euro3"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:layout_gravity="right"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:id="@+id/Importo3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/abc_text_size_body_2_material"
+            android:layout_marginRight="@dimen/abc_action_bar_icon_vertical_padding_material">
+
+            <Button
+                android:id="@+id/calcola1"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/abc_action_button_min_width_overflow_material"
+                android:width="@dimen/abc_dropdownitem_icon_width"
+                android:background="@drawable/accedi_butt"
+                android:drawableRight="@android:drawable/ic_menu_set_as"
+                android:text="Dettaglio"
+                android:textSize="7pt"
+                android:layout_marginBottom="@dimen/abc_dropdownitem_text_padding_right"
+                android:layout_marginTop="@dimen/abc_control_corner_material" />
+
+            <Button
+                android:id="@+id/calcola2"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/abc_action_button_min_width_overflow_material"
+                android:width="@dimen/abc_dropdownitem_icon_width"
+                android:background="@drawable/accedi_butt"
+                android:drawableRight="@android:drawable/ic_menu_set_as"
+                android:text="Dettaglio"
+                android:textSize="7pt"
+                android:layout_marginTop="@dimen/abc_action_bar_subtitle_bottom_margin_material" />
+
+        </LinearLayout>
+
+</LinearLayout>
 </LinearLayout>
