@@ -39,6 +39,41 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
+            android:layout_marginTop="@dimen/abc_text_size_body_2_material"
+            android:layout_marginRight="@dimen/abc_button_padding_horizontal_material"
+            android:layout_marginLeft="@dimen/abc_action_bar_icon_vertical_padding_material">
+
+            <Button
+                android:id="@+id/calcola1"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/abc_action_button_min_width_overflow_material"
+                android:width="@dimen/abc_dropdownitem_icon_width"
+                android:background="@drawable/accedi_butt"
+                android:drawableRight="@android:drawable/ic_menu_set_as"
+                android:text="Dettaglio"
+                android:textSize="7pt"
+                android:layout_marginBottom="@dimen/abc_dropdownitem_text_padding_right"
+                android:layout_marginTop="@dimen/abc_control_corner_material" />
+
+            <Button
+                android:id="@+id/calcola2"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/abc_action_button_min_width_overflow_material"
+                android:width="@dimen/abc_dropdownitem_icon_width"
+                android:background="@drawable/accedi_butt"
+                android:drawableRight="@android:drawable/ic_menu_set_as"
+                android:text="Dettaglio"
+                android:textSize="7pt"
+                android:layout_marginTop="@dimen/abc_action_bar_subtitle_bottom_margin_material" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
             android:layout_marginTop="@dimen/abc_text_size_body_2_material">
 
             <TextView
@@ -86,7 +121,7 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/abc_text_size_body_2_material"
-            android:layout_marginRight="@dimen/abc_text_size_headline_material">
+            android:layout_marginRight="@dimen/abc_action_bar_icon_vertical_padding_material">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,40 +159,6 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
                 android:id="@+id/Importo3" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/abc_text_size_body_2_material"
-            android:layout_marginRight="@dimen/abc_action_bar_icon_vertical_padding_material">
-
-            <Button
-                android:id="@+id/calcola1"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/abc_action_button_min_width_overflow_material"
-                android:width="@dimen/abc_dropdownitem_icon_width"
-                android:background="@drawable/accedi_butt"
-                android:drawableRight="@android:drawable/ic_menu_set_as"
-                android:text="Dettaglio"
-                android:textSize="7pt"
-                android:layout_marginBottom="@dimen/abc_dropdownitem_text_padding_right"
-                android:layout_marginTop="@dimen/abc_control_corner_material" />
-
-            <Button
-                android:id="@+id/calcola2"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/abc_action_button_min_width_overflow_material"
-                android:width="@dimen/abc_dropdownitem_icon_width"
-                android:background="@drawable/accedi_butt"
-                android:drawableRight="@android:drawable/ic_menu_set_as"
-                android:text="Dettaglio"
-                android:textSize="7pt"
-                android:layout_marginTop="@dimen/abc_action_bar_subtitle_bottom_margin_material" />
 
         </LinearLayout>
 
