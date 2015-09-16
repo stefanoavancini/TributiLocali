@@ -401,7 +401,7 @@ public class Dati extends Activity{
 
 
         ListAdapter adapter = new SimpleAdapter(
-                Dati.this, dati_list, R.layout.data_finale_riga, new String[]{KEY_VIA,KEY_SEZIONE,KEY_CATEGORIA,KEY_QUOTA,KEY_ABIT_PRINC,KEY_TOTALE}, new int[]{R.id.via,R.id.dati_catastali,R.id.categoria,R.id.quota,R.id.abit_princ,R.id.importo});
+                Dati.this, dati_list, R.layout.data_finale_riga, new String[]{KEY_VIA,KEY_SEZIONE,KEY_CATEGORIA,KEY_ABIT_PRINC,KEY_TOTALE}, new int[]{R.id.via,R.id.dati_catastali,R.id.categoria,R.id.abit_princ,R.id.importo});
         // updating listview
         listitem.setAdapter(adapter);
     }
